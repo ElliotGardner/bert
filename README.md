@@ -1,3 +1,8 @@
+# This is a modified copy
+In order to complete a multi-classification project, I have forked this repo
+and modified the run_classifier.py file for use in my project. Revisions are
+noted within the code. Otherwise it is untouched.
+
 # BERT
 
 **\*\*\*\*\* New May 31st, 2019: Whole Word Masking Models \*\*\*\*\***
