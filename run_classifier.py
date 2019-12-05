@@ -12,6 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# The CoLA processor has been modified for use in a multi-classification project
+
 """BERT finetuning runner."""
 
 from __future__ import absolute_import
@@ -313,7 +316,7 @@ class MrpcProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    return ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+    return ["0", "1"]
 
   def _create_examples(self, lines, set_type):
     """Creates examples for the training and dev sets."""
@@ -353,7 +356,7 @@ class ColaProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    return ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+    return ["0", "1", "2", "3", "4", "5", "6", "7", "8"] # modified list of labels
 
   def _create_examples(self, lines, set_type):
     """Creates examples for the training and dev sets."""
@@ -366,11 +369,11 @@ class ColaProcessor(DataProcessor):
       if set_type == "test":
         text_a = tokenization.convert_to_unicode(line[1])
         label = "0"
-        guid = "%s-%s" % (set_type, tokenization.convert_to_unicode(line[0]))
+        guid = "%s-%s" % (set_type, tokenization.convert_to_unicode(line[0])) # modified to keep track of lines
       else:
         text_a = tokenization.convert_to_unicode(line[3])
         label = tokenization.convert_to_unicode(line[1])
-        guid = "%s-%s" % (set_type, tokenization.convert_to_unicode(line[0]))
+        guid = "%s-%s" % (set_type, tokenization.convert_to_unicode(line[0])) # modified to keep track of lines
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
     return examples
